@@ -66,8 +66,8 @@ PUBLIC void vLoadScenesNVM(void);
 #define ZLL_NO_APS_ACK
 
 /* Sets the number of endpoints that will be created by the ZCL library */
-#define ZLL_NUMBER_OF_ENDPOINTS                             10
-#define ZLL_NUMBER_DEVICES                                  1
+#define ZLL_NUMBER_OF_ENDPOINTS                             5
+#define ZLL_NUMBER_DEVICES                                  4
 
 #define ZLL_MANUFACTURER_CODE                                0x1037
 
@@ -76,7 +76,7 @@ PUBLIC void vLoadScenesNVM(void);
 
 #define ZLL_NUMBER_OF_ZCL_APPLICATION_TIMERS                 3
 
-#define NUM_ENDPOINT_RECORDS         1
+#define NUM_ENDPOINT_RECORDS         4
 #define NUM_GROUP_RECORDS            4
 
 
@@ -172,8 +172,8 @@ PUBLIC void vLoadScenesNVM(void);
 #define CLD_BAS_APP_VERSION         (1)
 #define CLD_BAS_STACK_VERSION       (1)
 #define CLD_BAS_HARDWARE_VERSION    (1)
-#define CLD_BAS_MANUF_NAME_SIZE     (3)
-#define CLD_BAS_MODEL_ID_SIZE       (16)
+#define CLD_BAS_MANUF_NAME_SIZE     (9)
+#define CLD_BAS_MODEL_ID_SIZE       (9)
 #define CLD_BAS_DATE_SIZE           (8)
 #define CLD_BAS_POWER_SOURCE        E_CLD_BAS_PS_SINGLE_PHASE_MAINS
 #define CLD_BAS_SW_BUILD_SIZE       (9)
