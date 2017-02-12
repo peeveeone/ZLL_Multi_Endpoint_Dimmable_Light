@@ -1,4 +1,4 @@
-# Custom Zigbee Light Link firmware with multiple dimmable light endpoints
+# Multi endpoint ZLL firmware
 
 This project (when finished) will let you run ZLL compatible firmware with up to 4 dimmable lights on a single JN5168 chip.
 
