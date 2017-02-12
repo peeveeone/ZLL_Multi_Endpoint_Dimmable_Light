@@ -38,14 +38,8 @@
 
 #include "app_timer_driver.h"
 
-
-
-
-#ifdef RGB
-#include "App_Light_ColorLight.h"
-#else
 #include "App_Light_DimmableLight.h"
-#endif
+
 
 
 /****************************************************************************/

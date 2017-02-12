@@ -49,54 +49,6 @@
 			<storageModule moduleId="org.eclipse.cdt.core.language.mapping"/>
 			<storageModule moduleId="org.eclipse.cdt.internal.ui.text.commentOwnerProjectMappings"/>
 		</cconfiguration>
-		<cconfiguration id="0.876190861.1781733102.1301452172.2117801952">
-			<storageModule buildSystemId="org.eclipse.cdt.managedbuilder.core.configurationDataProvider" id="0.876190861.1781733102.1301452172.2117801952" moduleId="org.eclipse.cdt.core.settings" name="Light_ColorLight">
-				<externalSettings/>
-				<extensions>
-					<extension id="org.eclipse.cdt.core.GCCErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
-					<extension id="org.eclipse.cdt.core.GASErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
-					<extension id="org.eclipse.cdt.core.GLDErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
-					<extension id="org.eclipse.cdt.core.GmakeErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
-					<extension id="org.eclipse.cdt.core.CWDLocator" point="org.eclipse.cdt.core.ErrorParser"/>
-					<extension id="org.eclipse.cdt.core.ELF" point="org.eclipse.cdt.core.BinaryParser"/>
-				</extensions>
-			</storageModule>
-			<storageModule moduleId="cdtBuildSystem" version="4.0.0">
-				<configuration artifactName="JN-AN-1133-ZigBee-Pro-Lightswitch" buildProperties="" description="DriverBulb_JN56X_RGB" id="0.876190861.1781733102.1301452172.2117801952" name="Light_ColorLight" parent="org.eclipse.cdt.build.core.prefbase.cfg">
-					<folderInfo id="0.876190861.1781733102.1301452172.2117801952." name="/" resourcePath="">
-						<toolChain id="com.beyondsemi.toolchain.gnu.ba.elf.base.1688847601" name="BA ELF GNU toolchain" superClass="com.beyondsemi.toolchain.gnu.ba.elf.base">
-							<targetPlatform binaryParser="org.eclipse.cdt.core.ELF" id="com.beyondsemi.target.gnu.platform.ba.elf.1685006846" superClass="com.beyondsemi.target.gnu.platform.ba.elf"/>
-							<builder arguments="LIGHT=Light_ColorLight OTA=0 JENNIC_CHIP=JN5168 RGB=1" autoBuildTarget="all" buildPath="${ProjDirPath}/Common_Light/Build/ " cleanBuildTarget="clean" command="make" enableAutoBuild="false" enableCleanBuild="true" enabledIncrementalBuild="true" id="com.beyondsemi.builder.cdt.gnu.1375480072" incrementalBuildTarget="all" keepEnvironmentInBuildfile="false" managedBuildOn="false" name="Gnu Make Builder" parallelBuildOn="false" superClass="com.beyondsemi.builder.cdt.gnu"/>
-							<tool id="com.beyondsemi.tool.gnu.ba.elf.compiler.c.base.73389830" name="BA ELF GNU C compiler" superClass="com.beyondsemi.tool.gnu.ba.elf.compiler.c.base">
-								<option id="gnu.c.compiler.option.include.paths.264076444" name="Include paths (-I)" superClass="gnu.c.compiler.option.include.paths" valueType="includePath">
-									<listOptionValue builtIn="false" value="&quot;C:\NXP2\bstudio_nxp\sdk\JN-SW-4168\Components\Common\Include&quot;"/>
-								</option>
-								<inputType id="com.beyondsemi.base.ba.elf.c.compiler.input.1395792962" superClass="com.beyondsemi.base.ba.elf.c.compiler.input"/>
-								<inputType id="com.beyondsemi.assembler.macro.input.1796470117" superClass="com.beyondsemi.assembler.macro.input"/>
-							</tool>
-							<tool id="com.beyondsemi.tool.gnu.ba.elf.compiler.cpp.base.197736725" name="BA ELF GNU C++ compiler" superClass="com.beyondsemi.tool.gnu.ba.elf.compiler.cpp.base"/>
-							<tool id="com.beyondsemi.tool.gnu.ba.elf.linker.c.base.390645716" name="BA ELF GNU C linker" superClass="com.beyondsemi.tool.gnu.ba.elf.linker.c.base">
-								<inputType id="cdt.managedbuild.tool.gnu.c.linker.input.2074256784" superClass="cdt.managedbuild.tool.gnu.c.linker.input">
-									<additionalInput kind="additionalinputdependency" paths="$(USER_OBJS)"/>
-									<additionalInput kind="additionalinput" paths="$(LIBS)"/>
-								</inputType>
-							</tool>
-							<tool id="com.beyondsemi.tool.gnu.ba.elf.linker.cpp.base.965220603" name="BA ELF GNU C++ linker" superClass="com.beyondsemi.tool.gnu.ba.elf.linker.cpp.base"/>
-							<tool id="com.beyondsemi.tool.gnu.ba.elf.assembler.base.551439728" name="BA ELF GNU assembler" superClass="com.beyondsemi.tool.gnu.ba.elf.assembler.base">
-								<inputType id="cdt.managedbuild.tool.gnu.assembler.input.1803175430" superClass="cdt.managedbuild.tool.gnu.assembler.input"/>
-								<inputType id="com.beyondsemi.assembler.input.1431395986" superClass="com.beyondsemi.assembler.input"/>
-							</tool>
-							<tool id="com.beyondsemi.tool.gnu.ba.elf.archiver.base.396800933" name="BA ELF GNU archiver" superClass="com.beyondsemi.tool.gnu.ba.elf.archiver.base"/>
-							<tool id="com.beyondsemi.tool.gnu.ba.elf.size.base.1875628848" name="BA ELF GNU size" superClass="com.beyondsemi.tool.gnu.ba.elf.size.base"/>
-							<tool id="com.beyondsemi.tool.gnu.ba.elf.objcopy.base.641674872" name="BA ELF GNU objcopy" superClass="com.beyondsemi.tool.gnu.ba.elf.objcopy.base"/>
-						</toolChain>
-					</folderInfo>
-				</configuration>
-			</storageModule>
-			<storageModule moduleId="org.eclipse.cdt.core.externalSettings"/>
-			<storageModule moduleId="org.eclipse.cdt.core.language.mapping"/>
-			<storageModule moduleId="org.eclipse.cdt.internal.ui.text.commentOwnerProjectMappings"/>
-		</cconfiguration>
 	</storageModule>
 	<storageModule moduleId="cdtBuildSystem" version="4.0.0">
 		<project id="ZSL-Test-App-Switch.null.301096766" name="ZSL-Test-App-Switch"/>
