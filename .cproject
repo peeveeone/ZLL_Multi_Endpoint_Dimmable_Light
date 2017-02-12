@@ -2,7 +2,7 @@
 <?fileVersion 4.0.0?><cproject>
 	<storageModule moduleId="org.eclipse.cdt.core.settings">
 		<cconfiguration id="0.876190861.1781733102.485851044">
-			<storageModule buildSystemId="org.eclipse.cdt.managedbuilder.core.configurationDataProvider" id="0.876190861.1781733102.485851044" moduleId="org.eclipse.cdt.core.settings" name="Light_DimmableLight">
+			<storageModule buildSystemId="org.eclipse.cdt.managedbuilder.core.configurationDataProvider" id="0.876190861.1781733102.485851044" moduleId="org.eclipse.cdt.core.settings" name="DimmableLight_MultiEndpoint">
 				<externalSettings/>
 				<extensions>
 					<extension id="org.eclipse.cdt.core.GCCErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
@@ -14,11 +14,11 @@
 				</extensions>
 			</storageModule>
 			<storageModule moduleId="cdtBuildSystem" version="4.0.0">
-				<configuration artifactName="JN-AN-1133-ZigBee-Pro-Lightswitch" buildProperties="" description="DriverBulb_JN516X_White" id="0.876190861.1781733102.485851044" name="Light_DimmableLight" parent="org.eclipse.cdt.build.core.prefbase.cfg">
+				<configuration artifactName="JN-AN-1133-ZigBee-Pro-Lightswitch" buildProperties="" description="DimmableLight" id="0.876190861.1781733102.485851044" name="DimmableLight_MultiEndpoint" parent="org.eclipse.cdt.build.core.prefbase.cfg">
 					<folderInfo id="0.876190861.1781733102.485851044." name="/" resourcePath="">
 						<toolChain id="com.beyondsemi.toolchain.gnu.ba.elf.base.622423244" name="BA ELF GNU toolchain" superClass="com.beyondsemi.toolchain.gnu.ba.elf.base">
 							<targetPlatform binaryParser="org.eclipse.cdt.core.ELF" id="com.beyondsemi.target.gnu.platform.ba.elf.2086470325" superClass="com.beyondsemi.target.gnu.platform.ba.elf"/>
-							<builder arguments="LIGHT=Light_DimmableLight OTA=0 JENNIC_CHIP=JN5168 RGB=0" autoBuildTarget="all" buildPath="${ProjDirPath}/Common_Light/Build/ " cleanBuildTarget="clean" command="make" enableAutoBuild="false" enableCleanBuild="true" enabledIncrementalBuild="true" id="com.beyondsemi.builder.cdt.gnu.1335210811" incrementalBuildTarget="all" keepEnvironmentInBuildfile="false" managedBuildOn="false" name="Gnu Make Builder" parallelBuildOn="false" superClass="com.beyondsemi.builder.cdt.gnu"/>
+							<builder arguments="LIGHT=Light_DimmableLight OTA=0 JENNIC_CHIP=JN5168" autoBuildTarget="all" buildPath="${ProjDirPath}/Common_Light/Build/ " cleanBuildTarget="clean" command="make" enableAutoBuild="false" enableCleanBuild="true" enabledIncrementalBuild="true" id="com.beyondsemi.builder.cdt.gnu.1335210811" incrementalBuildTarget="all" keepEnvironmentInBuildfile="false" managedBuildOn="false" name="Gnu Make Builder" parallelBuildOn="false" superClass="com.beyondsemi.builder.cdt.gnu"/>
 							<tool id="com.beyondsemi.tool.gnu.ba.elf.compiler.c.base.1922993733" name="BA ELF GNU C compiler" superClass="com.beyondsemi.tool.gnu.ba.elf.compiler.c.base">
 								<option id="gnu.c.compiler.option.include.paths.842602994" name="Include paths (-I)" superClass="gnu.c.compiler.option.include.paths" valueType="includePath">
 									<listOptionValue builtIn="false" value="&quot;C:\NXP2\bstudio_nxp\sdk\JN-SW-4168\Components\Common\Include&quot;"/>
@@ -78,11 +78,11 @@
 		<configuration configurationName="Controller_ColourSceneControllerForShows">
 			<resource resourceType="PROJECT" workspacePath="/ZSL-Test-App"/>
 		</configuration>
-		<configuration configurationName="Light_ColorTemperatureLight_2">
-			<resource resourceType="PROJECT" workspacePath="/ZBProv1.1"/>
-		</configuration>
 		<configuration configurationName="Controller_ColorSceneController">
 			<resource resourceType="PROJECT" workspacePath="/ZSL-Test-App"/>
+		</configuration>
+		<configuration configurationName="Light_ColorTemperatureLight_2">
+			<resource resourceType="PROJECT" workspacePath="/ZBProv1.1"/>
 		</configuration>
 		<configuration configurationName="Controller_ColorController">
 			<resource resourceType="PROJECT" workspacePath="/ZSL-Test-App"/>
@@ -118,13 +118,16 @@
 		<configuration configurationName="Light_DimmableLight">
 			<resource resourceType="PROJECT" workspacePath="/ZSL-Test-App"/>
 		</configuration>
+		<configuration configurationName="DimmableLight_MultiEndpoint">
+			<resource resourceType="PROJECT" workspacePath="/ZLL_Multi_Endpoint_Dimmable_Light"/>
+		</configuration>
 		<configuration configurationName="Controller_NonColorController">
 			<resource resourceType="PROJECT" workspacePath="/ZSL-Test-App"/>
 		</configuration>
-		<configuration configurationName="Controller_NonColorSceneController">
+		<configuration configurationName="Light_DimmableLight_SSL2108A">
 			<resource resourceType="PROJECT" workspacePath="/ZSL-Test-App"/>
 		</configuration>
-		<configuration configurationName="Light_DimmableLight_SSL2108A">
+		<configuration configurationName="Controller_NonColorSceneController">
 			<resource resourceType="PROJECT" workspacePath="/ZSL-Test-App"/>
 		</configuration>
 	</storageModule>
