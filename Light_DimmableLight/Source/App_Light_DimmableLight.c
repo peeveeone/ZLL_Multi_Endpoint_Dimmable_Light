@@ -232,7 +232,7 @@ PRIVATE void EndpointInit(tsZLL_DimmableLightDevice* light, tsIdentifyWhite* eff
 	memcpy(light->sBasicServerCluster.au8ManufacturerName, "PeeVeeOne", CLD_BAS_MANUF_NAME_SIZE);
 	memcpy(light->sBasicServerCluster.au8ModelIdentifier, "PeeVeeOne", CLD_BAS_MODEL_ID_SIZE);
 	memcpy(light->sBasicServerCluster.au8DateCode, "201601106", CLD_BAS_DATE_SIZE);
-	memcpy(light->sBasicServerCluster.au8SWBuildID, "PV1.10001", CLD_BAS_SW_BUILD_SIZE);
+	memcpy(light->sBasicServerCluster.au8SWBuildID, "1000-9999", CLD_BAS_SW_BUILD_SIZE);
 
 	effect->u8Effect = E_CLD_IDENTIFY_EFFECT_STOP_EFFECT;
 	effect->u8Tick = 0;
