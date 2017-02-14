@@ -151,14 +151,32 @@ PUBLIC void* psGetDeviceTable(void) {
  ****************************************************************************/
 PUBLIC void APP_ZCL_vInitialise(void)
 {
+    teZCL_Status eZCL_Status;
     /* Initialise ZLL */
-    eZLL_Initialise(&APP_ZCL_cbGeneralCallback, apduZCL);
+    eZCL_Status = eZLL_Initialise(&APP_ZCL_cbGeneralCallback, apduZCL);
+    if (eZCL_Status != E_ZCL_SUCCESS)
+    {
+        DBG_vPrintf(TRACE_ZCL, "\nErr: eZLL_Initialise:%d", eZCL_Status);
+    }
 
     /* Start the tick timer */
     OS_eStartSWTimer(APP_TickTimer, ZCL_TICK_TIME, NULL);
 
+    sDeviceTable.asDeviceRecords[0].u64IEEEAddr = *((uint64*)pvAppApiGetMacAddrLocation());
+
     /* Register Commission EndPoint */
-    eApp_ZLL_RegisterEndpoint(&APP_ZCL_cbEndpointCallback,&sCommissionEndpoint);
+    eZCL_Status = eApp_ZLL_RegisterEndpoint(&APP_ZCL_cbEndpointCallback,&sCommissionEndpoint);
+    if (eZCL_Status != E_ZCL_SUCCESS)
+    {
+            DBG_vPrintf(TRACE_ZCL, "Error: eZLL_RegisterCommissionEndPoint:%d\r\n", eZCL_Status);
+    }
+
+
+    sLight.sOnOffServerCluster.bOnOff = TRUE;
+
+    vAPP_ZCL_DeviceSpecific_Init();
+
+
 }
 
 

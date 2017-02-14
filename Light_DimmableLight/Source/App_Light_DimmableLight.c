@@ -67,22 +67,6 @@
 
 tsZLL_DimmableLightDevice sLight;
 tsIdentifyWhite sIdEffect;
-
-tsZLL_DimmableLightDevice light_00;
-tsIdentifyWhite effect_00;
-
-tsZLL_DimmableLightDevice light_01;
-tsIdentifyWhite effect_01;
-
-tsZLL_DimmableLightDevice light_02;
-tsIdentifyWhite effect_02;
-
-tsZLL_DimmableLightDevice light_03;
-tsIdentifyWhite effect_03;
-
-PRIVATE tsZLL_DimmableLightDevice GetLight(uint8 u8Ep);
-PRIVATE tsIdentifyWhite GetEffect(uint8 u8Ep);
-
 tsCLD_ZllDeviceTable sDeviceTable = { ZLL_NUMBER_DEVICES,
 		{
 				{
@@ -128,9 +112,6 @@ tsCLD_ZllDeviceTable sDeviceTable = { ZLL_NUMBER_DEVICES,
 /***        Exported Functions                                            ***/
 /****************************************************************************/
 PRIVATE void vOverideProfileId(uint16* pu16Profile, uint8 u8Ep);
-PRIVATE void EndpointInit(tsZLL_DimmableLightDevice* light, tsIdentifyWhite* effect);
-
-
 /****************************************************************************
  *
  * NAME: eApp_ZLL_RegisterEndpoint
@@ -147,32 +128,25 @@ PRIVATE void EndpointInit(tsZLL_DimmableLightDevice* light, tsIdentifyWhite* eff
  * teZCL_Status
  *
  ****************************************************************************/
-PUBLIC teZCL_Status eApp_ZLL_RegisterEndpoint(tfpZCL_ZCLCallBackFunction fptr, tsZLL_CommissionEndpoint* psCommissionEndpoint)
+PUBLIC teZCL_Status eApp_ZLL_RegisterEndpoint(tfpZCL_ZCLCallBackFunction fptr,
+		tsZLL_CommissionEndpoint* psCommissionEndpoint)
 {
-	sDeviceTable.asDeviceRecords[0].u64IEEEAddr = *((uint64*)pvAppApiGetMacAddrLocation());
-	sDeviceTable.asDeviceRecords[1].u64IEEEAddr = *((uint64*)pvAppApiGetMacAddrLocation());
-	sDeviceTable.asDeviceRecords[2].u64IEEEAddr = *((uint64*)pvAppApiGetMacAddrLocation());
-	sDeviceTable.asDeviceRecords[3].u64IEEEAddr = *((uint64*)pvAppApiGetMacAddrLocation());
-
 
 	ZPS_vAplZdoRegisterProfileCallback(vOverideProfileId);
 	zps_vSetIgnoreProfileCheck();
 
-	eZLL_RegisterCommissionEndPoint(LIGHT_DIMMABLELIGHT_COMMISSION_ENDPOINT, fptr, psCommissionEndpoint);
+	eZLL_RegisterCommissionEndPoint(LIGHT_DIMMABLELIGHT_COMMISSION_ENDPOINT,
+			fptr,
+			psCommissionEndpoint);
 
 
-	eZLL_RegisterDimmableLightEndPoint(LIGHT_DIMMABLELIGHT_LIGHT_00_ENDPOINT, fptr,	&light_00);
-	eZLL_RegisterDimmableLightEndPoint(LIGHT_DIMMABLELIGHT_LIGHT_01_ENDPOINT, fptr, &light_01);
-	eZLL_RegisterDimmableLightEndPoint(LIGHT_DIMMABLELIGHT_LIGHT_02_ENDPOINT, fptr,	&light_02);
-	eZLL_RegisterDimmableLightEndPoint(LIGHT_DIMMABLELIGHT_LIGHT_03_ENDPOINT, fptr, &light_03);
+	eZLL_RegisterDimmableLightEndPoint(LIGHT_DIMMABLELIGHT_LIGHT_00_ENDPOINT, fptr,	&sLight);
+	eZLL_RegisterDimmableLightEndPoint(LIGHT_DIMMABLELIGHT_LIGHT_01_ENDPOINT, fptr, &sLight);
+	eZLL_RegisterDimmableLightEndPoint(LIGHT_DIMMABLELIGHT_LIGHT_02_ENDPOINT, fptr,	&sLight);
 
-
-	EndpointInit(&light_00, &effect_00);
-	EndpointInit(&light_01, &effect_01);
-	EndpointInit(&light_02, &effect_02);
-	EndpointInit(&light_03, &effect_03);
-
-	return E_ZCL_SUCCESS;
+	return eZLL_RegisterDimmableLightEndPoint(LIGHT_DIMMABLELIGHT_LIGHT_03_ENDPOINT,
+			fptr,
+			&sLight);
 }
 
 
@@ -192,17 +166,15 @@ PUBLIC teZCL_Status eApp_ZLL_RegisterEndpoint(tfpZCL_ZCLCallBackFunction fptr, t
  ****************************************************************************/
 PRIVATE void vOverideProfileId(uint16* pu16Profile, uint8 u8Ep)
 {
-
-	switch(u8Ep){
-
-	case LIGHT_DIMMABLELIGHT_LIGHT_00_ENDPOINT:
-	case LIGHT_DIMMABLELIGHT_LIGHT_01_ENDPOINT:
-	case LIGHT_DIMMABLELIGHT_LIGHT_02_ENDPOINT:
-	case LIGHT_DIMMABLELIGHT_LIGHT_03_ENDPOINT:
+	if (
+			u8Ep == LIGHT_DIMMABLELIGHT_LIGHT_00_ENDPOINT ||
+			u8Ep == LIGHT_DIMMABLELIGHT_LIGHT_01_ENDPOINT ||
+			u8Ep == LIGHT_DIMMABLELIGHT_LIGHT_02_ENDPOINT ||
+			u8Ep == LIGHT_DIMMABLELIGHT_LIGHT_03_ENDPOINT
+			)
+	{
 		*pu16Profile = 0x0104;
-		break;
 	}
-
 }
 
 
@@ -219,23 +191,16 @@ PRIVATE void vOverideProfileId(uint16* pu16Profile, uint8 u8Ep)
  * RETURNS: void
  *
  ****************************************************************************/
-
-
-
-
-
-PRIVATE void EndpointInit(tsZLL_DimmableLightDevice* light, tsIdentifyWhite* effect)
+PUBLIC void vAPP_ZCL_DeviceSpecific_Init()
 {
-	light->sOnOffServerCluster.bOnOff = TRUE;
-
 	/* Initialise the strings in Basic */
-	memcpy(light->sBasicServerCluster.au8ManufacturerName, "PeeVeeOne", CLD_BAS_MANUF_NAME_SIZE);
-	memcpy(light->sBasicServerCluster.au8ModelIdentifier, "PeeVeeOne", CLD_BAS_MODEL_ID_SIZE);
-	memcpy(light->sBasicServerCluster.au8DateCode, "201601106", CLD_BAS_DATE_SIZE);
-	memcpy(light->sBasicServerCluster.au8SWBuildID, "1000-9999", CLD_BAS_SW_BUILD_SIZE);
+	memcpy(sLight.sBasicServerCluster.au8ManufacturerName, "PeeVeeOne", CLD_BAS_MANUF_NAME_SIZE);
+	memcpy(sLight.sBasicServerCluster.au8ModelIdentifier, "PeeVeeOne", CLD_BAS_MODEL_ID_SIZE);
+	memcpy(sLight.sBasicServerCluster.au8DateCode, "201601106", CLD_BAS_DATE_SIZE);
+	memcpy(sLight.sBasicServerCluster.au8SWBuildID, "1000-9999", CLD_BAS_SW_BUILD_SIZE);
 
-	effect->u8Effect = E_CLD_IDENTIFY_EFFECT_STOP_EFFECT;
-	effect->u8Tick = 0;
+	sIdEffect.u8Effect = E_CLD_IDENTIFY_EFFECT_STOP_EFFECT;
+	sIdEffect.u8Tick = 0;
 
 }
 
@@ -293,19 +258,8 @@ PUBLIC void APP_vHandleIdentify(uint16 u16Time) {
  ****************************************************************************/
 PUBLIC void vIdEffectTick(uint8 u8Endpoint) {
 
-	switch(u8Endpoint){
-
-	case LIGHT_DIMMABLELIGHT_LIGHT_00_ENDPOINT:
-	case LIGHT_DIMMABLELIGHT_LIGHT_01_ENDPOINT:
-	case LIGHT_DIMMABLELIGHT_LIGHT_02_ENDPOINT:
-	case LIGHT_DIMMABLELIGHT_LIGHT_03_ENDPOINT:
-		break;
-
-
-	default:
+	if (u8Endpoint != LIGHT_DIMMABLELIGHT_LIGHT_00_ENDPOINT) {
 		return;
-
-
 	}
 
 	if (sIdEffect.u8Effect < E_CLD_IDENTIFY_EFFECT_STOP_EFFECT)

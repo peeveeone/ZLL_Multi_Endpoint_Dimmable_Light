@@ -44,17 +44,13 @@
 /****************************************************************************/
 
 extern tsZLL_DimmableLightDevice sLight;
-
 extern tsCLD_ZllDeviceTable sDeviceTable;
 
 /****************************************************************************/
 /***        Exported Functions                                            ***/
 /****************************************************************************/
 
-
 PUBLIC teZCL_Status eApp_ZLL_RegisterEndpoint(tfpZCL_ZCLCallBackFunction fptr,tsZLL_CommissionEndpoint* psCommissionEndpoint);
-
-//PUBLIC void eApp_ZLL_RegisterEndpoint(tfpZCL_ZCLCallBackFunction fptr,tsZLL_CommissionEndpoint* psCommissionEndpoint);
 PUBLIC void vAPP_ZCL_DeviceSpecific_Init(void);
 PUBLIC void vSetBulbState(bool bOn, uint8 u8Level);
 PUBLIC void vStartEffect(uint8 u8Effect);
