@@ -43,19 +43,25 @@
 /***        External Variables                                            ***/
 /****************************************************************************/
 
-extern tsZLL_DimmableLightDevice sLight;
+
 extern tsCLD_ZllDeviceTable sDeviceTable;
 
 /****************************************************************************/
 /***        Exported Functions                                            ***/
 /****************************************************************************/
 
+PUBLIC void ep_SetIdentifyTime(uint8 epId, uint16 u16Time);
+PUBLIC void ep_HandleIdentify(uint8 epId);
+PUBLIC bool ep_IsIdentifying(uint8 epId);
+
+PUBLIC void ep_SetBulbState(uint8 epId);
+
 PUBLIC teZCL_Status eApp_ZLL_RegisterEndpoint(tfpZCL_ZCLCallBackFunction fptr,tsZLL_CommissionEndpoint* psCommissionEndpoint);
 PUBLIC void vAPP_ZCL_DeviceSpecific_Init(void);
 PUBLIC void vSetBulbState(bool bOn, uint8 u8Level);
 PUBLIC void vStartEffect(uint8 u8Effect);
 PUBLIC void vIdEffectTick( uint8 u8Endpoint);
-PUBLIC void APP_vHandleIdentify(uint16 u16Time);
+
 PUBLIC void vCreateInterpolationPoints(void);
 
 /****************************************************************************/
