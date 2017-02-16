@@ -60,10 +60,6 @@ typedef struct
 typedef struct
 {
 	tsLI_Params sLevel;
-	tsLI_Params sRed;
-	tsLI_Params sGreen;
-	tsLI_Params sBlue;
-	tsLI_Params sColTemp;
 	uint32      u32PointsAdded;
 
 }tsLI_Vars;
@@ -84,10 +80,6 @@ PRIVATE uint32  u32divu10(uint32 n);
 /****************************************************************************/
 
 PRIVATE tsLI_Vars sLI_Vars = {.sLevel.i32Delta   = 0,
-		                      .sRed.i32Delta     = 0,
-                              .sGreen.i32Delta   = 0,
-                              .sBlue.i32Delta    = 0,
-                              .sColTemp.i32Delta = 0,
                               .u32PointsAdded  = INTPOINTS};
 
 /****************************************************************************/
@@ -100,13 +92,10 @@ PRIVATE tsLI_Vars sLI_Vars = {.sLevel.i32Delta   = 0,
  * DESCRIPTION:
  * Sets the current interpolation values
  ****************************************************************************/
-PUBLIC void vLI_SetCurrentValues(uint32 u32Level, uint32 u32Red, uint32 u32Green, uint32 u32Blue, uint32 u32ColTemp)
+PUBLIC void vLI_SetCurrentValues(uint32 u32Level)
 {
 	sLI_Vars.sLevel.u32Current   += u32Level   << SCALE;
-	sLI_Vars.sRed.u32Current     += u32Red     << SCALE;
-	sLI_Vars.sGreen.u32Current   += u32Blue    << SCALE;
-    sLI_Vars.sBlue.u32Current    += u32Green   << SCALE;
-    sLI_Vars.sColTemp.u32Current += u32ColTemp << SCALE;
+
 
 }
 
@@ -116,13 +105,9 @@ PUBLIC void vLI_SetCurrentValues(uint32 u32Level, uint32 u32Red, uint32 u32Green
  * DESCRIPTION:
  * Starts the linear interpolation process between successive ZCL updates
  ****************************************************************************/
-PUBLIC void vLI_Start(uint32 u32Level, uint32 u32Red, uint32 u32Green, uint32 u32Blue, uint32 u32ColTemp)
+PUBLIC void vLI_Start(uint32 u32Level)
 {
 	vLI_InitVar(&sLI_Vars.sLevel,    u32Level);
-	vLI_InitVar(&sLI_Vars.sRed,      u32Red);
-	vLI_InitVar(&sLI_Vars.sGreen,    u32Green);
-    vLI_InitVar(&sLI_Vars.sBlue,     u32Blue);
-    vLI_InitVar(&sLI_Vars.sColTemp,  u32ColTemp);
     vLI_UpdateDriver();
     sLI_Vars.u32PointsAdded  = 1;
 }
@@ -146,10 +131,6 @@ PUBLIC void vLI_CreatePoints(void)
     {
     	sLI_Vars.u32PointsAdded++;
         sLI_Vars.sLevel.u32Current   += sLI_Vars.sLevel.i32Delta;
-        sLI_Vars.sRed.u32Current     += sLI_Vars.sRed.i32Delta;
-        sLI_Vars.sGreen.u32Current   += sLI_Vars.sGreen.i32Delta;
-        sLI_Vars.sBlue.u32Current    += sLI_Vars.sBlue.i32Delta;
-        sLI_Vars.sColTemp.u32Current += sLI_Vars.sColTemp.i32Delta;
         vLI_UpdateDriver();
     }
 }
@@ -163,13 +144,7 @@ PUBLIC void vLI_CreatePoints(void)
  ****************************************************************************/
 PUBLIC void vLI_UpdateDriver(void)
 {
-	 vBULB_SetColour(sLI_Vars.sRed.u32Current   >> SCALE,
-			         sLI_Vars.sGreen.u32Current >> SCALE,
-			         sLI_Vars.sBlue.u32Current  >> SCALE);
-
 	 vBULB_SetLevel(sLI_Vars.sLevel.u32Current  >> SCALE);
-
-	 vBULB_SetColourTemperature(sLI_Vars.sColTemp.u32Current >> SCALE);
 }
 
 /****************************************************************************/

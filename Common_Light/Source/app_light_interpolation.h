@@ -48,8 +48,8 @@
 /***        Exported Functions                                            ***/
 /****************************************************************************/
 
-PUBLIC void vLI_SetCurrentValues(uint32 u32Level, uint32 u32Red, uint32 u32Green, uint32 u32Blue, uint32 u32ColTemp);
-PUBLIC void vLI_Start(uint32 u32Level,uint32 u32Red, uint32 u32Green, uint32 u32Blue, uint32 u32ColTemp);
+PUBLIC void vLI_SetCurrentValues(uint32 u32Level);
+PUBLIC void vLI_Start(uint32 u32Level);
 PUBLIC void vLI_Stop(void);
 PUBLIC void vLI_CreatePoints(void);
 PUBLIC void vLI_UpdateDriver(void);

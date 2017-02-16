@@ -195,6 +195,8 @@ APPSRC += zps_gen.c
 APPSRC += app_timer_driver.c
 APPSRC += app_start_light.c
 APPSRC += app_scenes.c
+
+
  
 APPSRC += zpr_light_node.c
 APPSRC += ecb_decrypt.c
@@ -212,6 +214,8 @@ APPSRC += appZpsBeaconHandler.c
 APPSRC += App_$(TARGET).c
 APPSRC += DriverBulb_$(DR).c
 APPSRC += DriverBulb_Shim.c
+
+APPSRC += ep_00_light.c
 
 CFLAGS +=-D$(DR)
 CFLAGS += -DEMBEDDED

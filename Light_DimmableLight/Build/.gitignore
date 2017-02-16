@@ -279,3 +279,5 @@
 /zpr_light_node.o
 /zps_gen.d
 /zps_gen.o
+/ep_00_light.d
+/ep_00_light.o

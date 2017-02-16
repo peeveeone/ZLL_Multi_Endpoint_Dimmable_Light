@@ -193,9 +193,9 @@ PUBLIC void vAppMain(void)
 
     /* Bulb is now on 100% white (RGB or Mono) so ensure the LI     */
     /*  module's values are consistent with this initial state      */
-#ifndef MONO_ON_OFF
-     vLI_SetCurrentValues(CLD_LEVELCONTROL_MAX_LEVEL ,255,255,255,4000 );
-#endif
+
+     vLI_SetCurrentValues(CLD_LEVELCONTROL_MAX_LEVEL );
+
 
     g_u8ZpsExpiryMaxCount = 1;
     /* Initialise the debug diagnostics module to use UART0 at 115K Baud;
