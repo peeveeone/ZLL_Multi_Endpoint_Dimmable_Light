@@ -43,26 +43,28 @@
 /***        External Variables                                            ***/
 /****************************************************************************/
 
-
 extern tsCLD_ZllDeviceTable sDeviceTable;
 
 /****************************************************************************/
 /***        Exported Functions                                            ***/
 /****************************************************************************/
 
-PUBLIC void ep_SetIdentifyTime(uint8 epId, uint16 u16Time);
+
+// Facade endpoint functions called from EndpointCallback
+
 PUBLIC void ep_HandleIdentify(uint8 epId);
 PUBLIC bool ep_IsIdentifying(uint8 epId);
-
+PUBLIC void ep_StartEffect(uint8 epId, uint8 u8Effect);
 PUBLIC void ep_SetBulbState(uint8 epId);
-
-PUBLIC teZCL_Status eApp_ZLL_RegisterEndpoint(tfpZCL_ZCLCallBackFunction fptr,tsZLL_CommissionEndpoint* psCommissionEndpoint);
-PUBLIC void vAPP_ZCL_DeviceSpecific_Init(void);
-PUBLIC void vSetBulbState(bool bOn, uint8 u8Level);
-PUBLIC void vStartEffect(uint8 u8Effect);
+// Also endpoint, but used by zcl (sdk)
 PUBLIC void vIdEffectTick( uint8 u8Endpoint);
 
-PUBLIC void vCreateInterpolationPoints(void);
+// Facade endpoint registration
+PUBLIC teZCL_Status eApp_ZLL_RegisterEndpoint(tfpZCL_ZCLCallBackFunction fptr,tsZLL_CommissionEndpoint* psCommissionEndpoint);
+PUBLIC void vAPP_ZCL_DeviceSpecific_Init(void);
+
+
+
 
 /****************************************************************************/
 /***        END OF FILE                                                   ***/

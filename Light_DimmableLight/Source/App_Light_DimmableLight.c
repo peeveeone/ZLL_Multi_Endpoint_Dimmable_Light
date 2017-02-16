@@ -82,7 +82,10 @@ tsCLD_ZllDeviceTable sDeviceTable = { ZLL_NUMBER_DEVICES,
 /****************************************************************************/
 /***        Exported Functions                                            ***/
 /****************************************************************************/
+PRIVATE void ep_SetIdentifyTime(uint8 epId, uint16 u16Time);
 PRIVATE void vOverideProfileId(uint16* pu16Profile, uint8 u8Ep);
+PRIVATE void vSetBulbState(bool bOn, uint8 u8Level);
+
 /****************************************************************************
  *
  * NAME: eApp_ZLL_RegisterEndpoint
@@ -151,7 +154,7 @@ PRIVATE void vOverideProfileId(uint16* pu16Profile, uint8 u8Ep)
  *  Returns endpoint id
  *
  ****************************************************************************/
-PUBLIC uint8 u8AppGetEPId(void)
+PUBLIC uint8 u8AppGetEpId(void)
 {
 	return LIGHT_DIMMABLELIGHT_LIGHT_00_ENDPOINT;
 }
@@ -190,7 +193,7 @@ PUBLIC void vAPP_ZCL_DeviceSpecific_Init()
 
 
 
-PUBLIC void ep_SetIdentifyTime(uint8 epId, uint16 u16Time)
+PRIVATE void ep_SetIdentifyTime(uint8 epId, uint16 u16Time)
 {
 	sLight.sIdentifyServerCluster.u16IdentifyTime = u16Time;
 }
@@ -371,7 +374,7 @@ PUBLIC void vIdEffectTick(uint8 epId) {
  * RETURNS: void
  *
  ****************************************************************************/
-PUBLIC void vStartEffect(uint8 u8Effect) {
+PUBLIC void ep_StartEffect(uint8 epId, uint8 u8Effect) {
 	switch (u8Effect) {
 	case E_CLD_IDENTIFY_EFFECT_BLINK:
 		sIdEffect.u8Effect = E_CLD_IDENTIFY_EFFECT_BLINK;
@@ -440,7 +443,7 @@ PUBLIC void vStartEffect(uint8 u8Effect) {
  * RETURNS: void
  *
  ****************************************************************************/
-PUBLIC void vSetBulbState(bool bOn, uint8 u8Level)
+PRIVATE void vSetBulbState(bool bOn, uint8 u8Level)
 {
 	if (bOn)
 	{

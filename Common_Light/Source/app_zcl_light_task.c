@@ -414,7 +414,8 @@ PRIVATE void APP_ZCL_cbEndpointCallback(tsZCL_CallBackEvent *psEvent)
 			if (psCallBackMessage->u8CommandId == E_CLD_IDENTIFY_CMD_TRIGGER_EFFECT) {
 
 				DBG_vPrintf(TRACE_LIGHT_TASK, "Identify Cust CB %d\n", psCallBackMessage->uMessage.psTriggerEffectRequestPayload->eEffectId);
-				vStartEffect(psCallBackMessage->uMessage.psTriggerEffectRequestPayload->eEffectId);
+
+				ep_StartEffect(psEvent->u8EndPoint, psCallBackMessage->uMessage.psTriggerEffectRequestPayload->eEffectId);
 
 			} else if (psCallBackMessage->u8CommandId == E_CLD_IDENTIFY_CMD_IDENTIFY) {
 
