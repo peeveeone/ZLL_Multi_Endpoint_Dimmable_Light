@@ -62,9 +62,6 @@
 #define TRACE_PATH  FALSE
 #endif
 
-/****************************************************************************/
-/***        Exported Variables                                            ***/
-/****************************************************************************/
 
 tsCLD_ZllDeviceTable sDeviceTable = { ZLL_NUMBER_DEVICES,
 		{
@@ -78,28 +75,10 @@ tsCLD_ZllDeviceTable sDeviceTable = { ZLL_NUMBER_DEVICES,
 		}
 };
 
-/****************************************************************************/
-/***        Exported Functions                                            ***/
-/****************************************************************************/
 
 PRIVATE void vOverideProfileId(uint16* pu16Profile, uint8 u8Ep);
-PRIVATE void ep_SetIdentifyTime(uint8 epId, uint16 u16Time);
-/****************************************************************************
- *
- * NAME: eApp_ZLL_RegisterEndpoint
- *
- * DESCRIPTION:
- * Register ZLL endpoints
- *
- * PARAMETER
- * Type                        Name                  Descirption
- * tfpZCL_ZCLCallBackFunction  fptr                  Pointer to ZCL Callback function
- * tsZLL_CommissionEndpoint    psCommissionEndpoint  Pointer to Commission Endpoint
- *
- * RETURNS:
- * teZCL_Status
- *
- ****************************************************************************/
+
+
 PUBLIC teZCL_Status eApp_ZLL_RegisterEndpoint(tfpZCL_ZCLCallBackFunction fptr,
 		tsZLL_CommissionEndpoint* psCommissionEndpoint)
 {
@@ -111,28 +90,14 @@ PUBLIC teZCL_Status eApp_ZLL_RegisterEndpoint(tfpZCL_ZCLCallBackFunction fptr,
 
 	eZLL_RegisterCommissionEndPoint(LIGHT_DIMMABLELIGHT_COMMISSION_ENDPOINT, fptr, psCommissionEndpoint);
 
-
-	ep_00_Init(fptr);
+	ep_00_Register(fptr);
 
 	return E_ZCL_SUCCESS;
 
 }
 
 
-/****************************************************************************
- *
- * NAME: vOverideProfileId
- *
- * DESCRIPTION: Allows the application to over ride the profile in the
- * simple descriptor (0xc05e) with the ZHA profile id (0x0104)
- * required for on air packets
- *
- *
- * PARAMETER: pointer to the profile  to be used, the end point sending the data
- *
- * RETURNS: void
- *
- ****************************************************************************/
+
 PRIVATE void vOverideProfileId(uint16* pu16Profile, uint8 u8Ep)
 {
 	switch(u8Ep){
@@ -152,44 +117,11 @@ PRIVATE void vOverideProfileId(uint16* pu16Profile, uint8 u8Ep)
 
 }
 
-/****************************************************************************
- *
- * NAME: vAppGetEPId
- *
- * DESCRIPTION:
- * Gets endpoint id
- *
- *  RETURNS:
- *  Returns endpoint id
- *
- ****************************************************************************/
-//PUBLIC uint8 u8AppGetEpId(void)
-//{
-//	return LIGHT_DIMMABLELIGHT_LIGHT_00_ENDPOINT;
-//}
-
-/****************************************************************************
- *
- * NAME: vAPP_ZCL_DeviceSpecific_Init
- *
- * DESCRIPTION:
- * ZLL Device Specific initialization
- *
- * PARAMETER: void
- *
- * RETURNS: void
- *
- ****************************************************************************/
 PUBLIC void vAPP_ZCL_DeviceSpecific_Init()
 {
-
-
+	ep_00_Initialise();
 }
 
-PRIVATE void ep_SetIdentifyTime(uint8 epId, uint16 u16Time)
-{
-	ep_00_SetIdentifyTime(u16Time);
-}
 
 PUBLIC void ep_SetBulbState(uint8 epId){
 
@@ -202,35 +134,13 @@ PUBLIC bool ep_IsIdentifying(uint8 epId){
 	return ep_00_IsIdentifying();
 }
 
-/****************************************************************************
- *
- * NAME: APP_vHandleIdentify
- *
- * DESCRIPTION:
- * ZLL Device Specific identify
- *
- * PARAMETER: the identify time
- *
- * RETURNS: void
- *
- ****************************************************************************/
+
 PUBLIC void ep_HandleIdentify(uint8 epId ){
 
 	ep_00_HandleIdentify();
 }
 
-/****************************************************************************
- *
- * NAME: vIdEffectTick
- *
- * DESCRIPTION:
- * ZLL Device Specific identify tick
- *
- * PARAMETER: void
- *
- * RETURNS: void
- *
- ****************************************************************************/
+
 PUBLIC void vIdEffectTick(uint8 epId) {
 
 	if (epId != LIGHT_DIMMABLELIGHT_LIGHT_00_ENDPOINT) {
@@ -240,39 +150,10 @@ PUBLIC void vIdEffectTick(uint8 epId) {
 	ep_00_IdEffectTick();
 }
 
-/****************************************************************************
- *
- * NAME: vStartEffect
- *
- * DESCRIPTION:
- * ZLL Device Specific identify effect set up
- *
- * PARAMETER: void
- *
- * RETURNS: void
- *
- ****************************************************************************/
+
 PUBLIC void ep_StartEffect(uint8 epId, uint8 u8Effect) {
 
 	ep_00_StartEffect(u8Effect);
 }
 
-/****************************************************************************
- *
- * NAME: vSetBulbState
- *
- * DESCRIPTION:
- * ZLL Device Specific build driver interface
- *
- * PARAMETER: the on/off state, the level
- *
- * RETURNS: void
- *
- ****************************************************************************/
 
-
-
-
-/****************************************************************************/
-/***        END OF FILE                                                   ***/
-/****************************************************************************/

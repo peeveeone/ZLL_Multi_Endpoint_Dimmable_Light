@@ -15,29 +15,27 @@
 static tsZLL_DimmableLightDevice sLight;
 static tsIdentifyWhite sIdEffect;
 
-PUBLIC void ep_00_Init(tfpZCL_ZCLCallBackFunction fptr){
+PUBLIC void ep_00_Register(tfpZCL_ZCLCallBackFunction fptr){
 
 	eZLL_RegisterDimmableLightEndPoint(LIGHT_DIMMABLELIGHT_LIGHT_00_ENDPOINT, fptr, &sLight);
-
-
 
 	/* Initialise the strings in Basic */
 	memcpy(sLight.sBasicServerCluster.au8ManufacturerName, "PeeVeeOne", CLD_BAS_MANUF_NAME_SIZE);
 	memcpy(sLight.sBasicServerCluster.au8ModelIdentifier, "PeeVeeOne", CLD_BAS_MODEL_ID_SIZE);
 	memcpy(sLight.sBasicServerCluster.au8DateCode, "201601106", CLD_BAS_DATE_SIZE);
 	memcpy(sLight.sBasicServerCluster.au8SWBuildID, "1000-9999", CLD_BAS_SW_BUILD_SIZE);
-
-	sLight.sLevelControlServerCluster.u8CurrentLevel = 0xFE;
-	sLight.sOnOffServerCluster.bOnOff = TRUE;
-		sIdEffect.u8Effect = E_CLD_IDENTIFY_EFFECT_STOP_EFFECT;
-	sIdEffect.u8Tick = 0;
-
 }
 
 
+PUBLIC void ep_00_Initialise(){
+
+	sLight.sLevelControlServerCluster.u8CurrentLevel = 0xFE;
+	sLight.sOnOffServerCluster.bOnOff = TRUE;
+	sIdEffect.u8Effect = E_CLD_IDENTIFY_EFFECT_STOP_EFFECT;
+	sIdEffect.u8Tick = 0;
+}
+
 PUBLIC void ep_00_SetCurentBulbState(){
-
-
 
 	ep_00_SetBulbState(sLight.sOnOffServerCluster.bOnOff, sLight.sLevelControlServerCluster.u8CurrentLevel);
 }
@@ -63,7 +61,7 @@ PUBLIC void ep_00_SetIdentifyTime(uint16 u16Time){
 
 PUBLIC bool ep_00_IsIdentifying(){
 
-	return sLight.sIdentifyServerCluster.u16IdentifyTime == 0;
+	return sLight.sIdentifyServerCluster.u16IdentifyTime != 0;
 }
 
 PUBLIC void ep_00_HandleIdentify( ){

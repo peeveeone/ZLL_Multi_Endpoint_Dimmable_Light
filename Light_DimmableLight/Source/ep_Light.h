@@ -15,7 +15,8 @@
 PUBLIC void ep_00_SetCurentBulbState();
 PUBLIC void ep_00_SetBulbState(bool bOn, uint8 u8Level);
 PUBLIC void ep_00_SetIdentifyTime(uint16 u16Time);
-PUBLIC void ep_00_Init(tfpZCL_ZCLCallBackFunction fptr);
+PUBLIC void ep_00_Register(tfpZCL_ZCLCallBackFunction fptr);
+PUBLIC void ep_00_Initialise();
 PUBLIC bool ep_00_IsIdentifying();
 PUBLIC void ep_00_HandleIdentify( );
 PUBLIC void ep_00_IdEffectTick() ;
