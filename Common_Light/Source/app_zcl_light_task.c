@@ -447,7 +447,7 @@ PRIVATE void APP_ZCL_cbEndpointCallback(tsZCL_CallBackEvent *psEvent)
 			}
 			else
 			{
-				if (ep_IsIdentifying(psEvent->u8EndPoint)) {
+				if (!ep_IsIdentifying(psEvent->u8EndPoint)) {
 					/*
 					 * If not identifying then do the light
 					 */

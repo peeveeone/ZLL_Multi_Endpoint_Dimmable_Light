@@ -37,6 +37,8 @@ PUBLIC void ep_00_Init(tfpZCL_ZCLCallBackFunction fptr){
 
 PUBLIC void ep_00_SetCurentBulbState(){
 
+
+
 	ep_00_SetBulbState(sLight.sOnOffServerCluster.bOnOff, sLight.sLevelControlServerCluster.u8CurrentLevel);
 }
 
